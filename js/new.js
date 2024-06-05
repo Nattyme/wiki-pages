@@ -3,6 +3,8 @@
 
     const markdownSourceElement = document.querySelector('#markdown-source')
     const markdownResultElement = document.querySelector('#markdown-result')
+    const saveArticleButton = document.querySelector('#save-article-button')
+    const articleTitleElement = document.querySelector('#article-title')
 
     markdownSourceElement.value = `## Чёрная дыра
 ---
@@ -42,6 +44,26 @@ _У этого термина существуют и другие значен�
     markdownSourceElement.addEventListener('keyup', function () {
         const result = marked.parse(markdownSourceElement.value);
         markdownResultElement.innerHTML = result;
+    })
+
+    saveArticleButton.addEventListener('click', function(){
+        //По клику на кнопку получаем данные новой статьи
+
+        const newArticle = {
+            id: 0,
+            title: articleTitleElement.value,
+            content: markdownSourceElement.value
+        }
+
+        // Получаем данные  всех статьей из локального хранилища в виде строки
+        const json = localStorage.getItem('articles')
+        // Преоьразуем строку в объект
+        const articles = JSON.parse(json)
+
+        console.log(articles);
+        
+
+        
     })
 
 })();
