@@ -15,11 +15,26 @@
     //Опубликовать 200 символов последней из добавленных статьей
     markdownResultElement.innerHTML = marked.parse(article.content.substr(0, 200) + '...');
 
+    // Вывести список всех статей
     let str = ''
     for (let i = 0; i < articles.length; i++) {
         const currentArticle = articles[i]
         str = str + '<li class="other-list__item"><a class="other-list__link" href="#">' + currentArticle.title +'</a></li>'
         }
     allArticlesListElement.innerHTML = str
-    
+
+    //Вывести список трех последних статей
+    str = ''
+    for (let i = articles.length - 3; i < articles.length; i++) {
+        console.log(i)
+        const currentArticle = articles[i]
+        str = str + '<li class="articles-list-item"><a href="article.html" class="articles-list-link">' + currentArticle.title + '</a></li>'
+        }
+    lastArticlesListElement.innerHTML = str;
+
+     // Кнопка при нажатии открывает последнюю статью
+     readArticleButton.addEventListener('click', function (){
+        location.replace('article.html?id=' + article.id)
+    })
+
 })();
