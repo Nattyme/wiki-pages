@@ -9,10 +9,17 @@
     //Список всех статей 
     const json = localStorage.getItem('articles');
     const articles = JSON.parse(json);
+    //Находим последнюю статью
+    const article = articles[articles.length - 2];
 
-    console.log(articles);
+    //Опубликовать 200 символов последней из добавленных статьей
+    markdownResultElement.innerHTML = marked.parse(article.content.substr(0, 200) + '...');
 
-    const article = articles[articles.length - 1];
-    console.log(article);
-
+    let str = ''
+    for (let i = 0; i < articles.length; i++) {
+        const currentArticle = articles[i]
+        str = str + '<li class="other-list__item"><a class="other-list__link" href="#">' + currentArticle.title +'</a></li>'
+        }
+    allArticlesListElement.innerHTML = str
+    
 })();
