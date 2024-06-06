@@ -6,6 +6,24 @@
     const saveArticleButton = document.querySelector('#save-article-button')
     const articleTitleElement = document.querySelector('#article-title')
 
+    const id = parseInt(location.search.substring(4))
+
+    if (id >= 0) {
+        //Список всех статей 
+        const json = localStorage.getItem('articles')
+        const articles = JSON.parse(json)
+
+        let article = null
+        for (let i = 0; i < articles.length; i ++) {
+
+            if (articles[i].id === id) {
+                article = articles[i]
+            }
+        }
+        markdownSourceElement.value = article.content
+        articleTitleElement.value = article.title
+    }
+
     markdownSourceElement.addEventListener('keyup', function () {
         const result = marked.parse(markdownSourceElement.value);
         markdownResultElement.innerHTML = result;

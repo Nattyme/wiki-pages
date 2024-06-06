@@ -14,7 +14,7 @@
 
         if (articles[i].id === id) {
             article = articles[i]
-            }
+        }
     }
 
     articleElement.innerHTML = marked.parse(article.content)
