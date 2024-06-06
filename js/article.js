@@ -1,7 +1,8 @@
 ;(function () {
     'use strict'
 
-    const articleElement = document.querySelector('#article');
+    const articleElement = document.querySelector('#article')
+    const editArticleButton = document.querySelector('#edit-article')
 
     const id = parseInt(location.search.substring(4))
     //Список всех статей 
@@ -14,9 +15,12 @@
         if (articles[i].id === id) {
             article = articles[i]
             }
-        console.log(article)
     }
 
     articleElement.innerHTML = marked.parse(article.content)
+
+    editArticleButton.addEventListener('click', function() {
+        location.replace('new.html?id=' + id)
+    })
 
 })();

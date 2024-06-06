@@ -19,7 +19,7 @@
     let str = ''
     for (let i = 0; i < articles.length; i++) {
         const currentArticle = articles[i]
-        str = str + '<li class="other-list__item"><a class="other-list__link" href="#">' + currentArticle.title +'</a></li>'
+        str = str + '<li class="other-list__item"><a class="other-list__link" href="article.html?id=' + currentArticle.id + ' ">' + currentArticle.title +'</a></li>'
         }
     allArticlesListElement.innerHTML = str
 
