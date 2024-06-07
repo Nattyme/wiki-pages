@@ -7,9 +7,9 @@
     const articleTitleElement = document.querySelector('#article-title')
 
     const id = parseInt(location.search.substring(4))
-     //Список всех статей 
-     const json = localStorage.getItem('articles')
-     const articles = JSON.parse(json)
+    //Список всех статей 
+    const json = localStorage.getItem('articles')
+    const articles = JSON.parse(json)
 
     // Если у статьи есть id, то значит  мы редактируем статью
     if (id) {
@@ -49,15 +49,15 @@
                 content: markdownSourceElement.value
             }
 
-            // Вычисляем для id новой статьи
+            // Вычисляем id новой статьи
             newArticle.id = articles.length + 1
-            // Добавляем новуб статью в конец массива
+            // Добавляем новую статью в конец массива
             articles.push(newArticle) 
         }
             
         // Добавляем статьи в локальное хранилище, преобразвав в строку
         localStorage.setItem('articles', JSON.stringify(articles))
-        if (id >= 0) {
+        if (id) {
             location.replace('article.html?id=' + id)
         }
         else {

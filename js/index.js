@@ -10,7 +10,7 @@
     const json = localStorage.getItem('articles');
     const articles = JSON.parse(json);
     //Находим последнюю статью
-    const article = articles[articles.length - 2];
+    const article = articles[articles.length - 1];
 
     //Опубликовать 200 символов последней из добавленных статьей
     markdownResultElement.innerHTML = marked.parse(article.content.substr(0, 200) + '...');
