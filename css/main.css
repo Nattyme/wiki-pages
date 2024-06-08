@@ -411,3 +411,7 @@ a:hover {
 	border: 2px solid #EB901A;
 	padding: 9px 14px;
 }
+
+.button-save:disabled {
+    color: rgba(0, 0, 0, 0.3);
+}

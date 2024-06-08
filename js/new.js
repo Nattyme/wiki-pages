@@ -10,9 +10,8 @@
     //Список всех статей 
     const json = localStorage.getItem('articles')
     const articles = JSON.parse(json)
-
     // Если у статьи есть id, то значит  мы редактируем статью
-    if (id) {
+    if (id >= 0) {
         let article = null
         for (let i = 0; i < articles.length; i ++) {
 
@@ -30,6 +29,14 @@
         const result = marked.parse(markdownSourceElement.value);
         markdownResultElement.innerHTML = result;
     })
+
+    function checkInputs() {
+        if (articleTitleElement.value.trim() !== "" && markdownSourceElement .value.trim() !== "") {
+            saveArticleButton.removeAttribute("disabled");
+        } else {
+            saveArticleButton.setAttribute("disabled", "disabled");
+        }
+    }
 
     saveArticleButton.addEventListener('click', function(){
         if (id) {
@@ -54,7 +61,10 @@
             // Добавляем новую статью в конец массива
             articles.push(newArticle) 
         }
-            
+
+        articleTitleElement.addEventListener("input", checkInputs);
+        markdownSourceElement.addEventListener("input", checkInputs);
+                    
         // Добавляем статьи в локальное хранилище, преобразвав в строку
         localStorage.setItem('articles', JSON.stringify(articles))
         if (id) {
